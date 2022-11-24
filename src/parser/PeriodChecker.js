@@ -2,7 +2,7 @@ const PeriodChecker = () => {
   const weekNumber = getWeekNumber(new Date());
   //   console.log(weekNumber);
   const period = weekNumber[1] % 2 ? "Числитель" : "Знаменатель";
-  console.log(period);
+  // console.log(period);
   return period;
 };
 

@@ -22,7 +22,7 @@ const buildMessage = (bot, chatId) => {
 
   const messageData = bot.schedules[bot.users[chatId].gp_name][day];
   if (messageData) {
-    console.log(messageData);
+    // console.log(messageData);
     const message = messageData
       .filter((data) =>
         period === "Числитель"
