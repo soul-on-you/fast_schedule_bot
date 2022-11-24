@@ -21,7 +21,13 @@ const loadDB = async () => {
   const groups = loadGroupDB();
 
   const res = await Promise.all([users, groups]);
-  return { users: res[0], groups: res[1] };
+  return {
+    users: res[0].reduce((acc, user) => {
+      acc[user.chatId] = { gp_name: user.gp_name, timeRemind: user.timeRemind, id: user.id };
+      return acc;
+    }, {}),
+    groups: res[1],
+  };
 };
 
 module.exports = { loadDB };

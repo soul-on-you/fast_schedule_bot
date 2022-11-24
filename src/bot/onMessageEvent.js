@@ -18,10 +18,11 @@ const onMessage = (bot) => (message) => {
         chatId,
         "👋 Welcome!\n\n🎓Введите название группы в которой обучаетесь"
       );
+      bot.tempUsers[chatId].action = bot.ACTIONS.ADDGROUP;
     }
 
     if (message.text === "/unsubscribe") {
-      const deleteId = bot.users.find((user) => user.chatId === chatId)?.id;
+      const deleteId = bot.users[chatId]?.id;
       if (deleteId)
         removeFromUserDB(deleteId).then(() => {
           bot.sendMessage(
@@ -29,6 +30,9 @@ const onMessage = (bot) => (message) => {
             "✅ Вы успешно отписались от рассылки расписания\n\n🥳 Чтобы подписаться повторно отправьте /start"
           );
         });
+      bot.removeTask(chatId);
+      delete bot.tasks[chatId];
+      delete bot.users[chatId];
     }
 
     if (message.text === "/info") {
@@ -43,6 +47,7 @@ const onMessage = (bot) => (message) => {
             chatId,
             "🔍 Не удается найти вашу информацию, давайте заполним заново!\n\n🎓Введите название группы в которой обучаетесь"
           );
+          bot.tempUsers[chatId].action = bot.ACTIONS.ADDGROUP;
         }
       });
     }

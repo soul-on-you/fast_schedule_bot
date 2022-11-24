@@ -7,7 +7,12 @@ const botAddTime = (bot, chatId) => {
     bot.tempUsers[chatId].data.time
   )
     .then((data) => {
-      bot.users.push(data);
+      bot.users[chatId] = {
+        gp_name: data.gp_name,
+        timeRemind: data.timeRemind,
+        id: data.id,
+      };
+      bot.createTask(chatId);
       return bot.sendMessage(
         chatId,
         `✅ Вы успешно подписались на рассылку расписания\n\n🗂️ Данные о вашей рассылке:\n\n🎓 Группа: ${data.gp_name}\n🕰️ Время уведомления: ${data.timeRemind}\n\n📇 Чтобы отписаться отправьте /unsubscribe`
