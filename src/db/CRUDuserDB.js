@@ -2,14 +2,14 @@ const axios = require("axios");
 
 const findUserInDB = async (chatId) => {
   console.log("Finding user in database...");
-  const res = await axios.get(`http://localhost:3000/users/?chatId=${chatId}`);
+  const res = await axios.get(`${process.env.DB_PATH}/users/?chatId=${chatId}`);
   console.log("Find user in database...");
   return res.data[0];
 };
 
 const removeFromUserDB = async (chatId) => {
   console.log("Removing users from database...");
-  const res = await axios.delete(`http://localhost:3000/users/${chatId}`);
+  const res = await axios.delete(`${process.env.DB_PATH}/users/${chatId}`);
   console.log("Successfully removed users from database");
   return res.data;
 };
@@ -21,7 +21,7 @@ const addToUserDB = async (chatId, gp_name, timeRemind) => {
   }
 
   console.log("Adding users to database...");
-  const res = await axios.post("http://localhost:3000/users", {
+  const res = await axios.post(`${process.env.DB_PATH}/users`, {
     chatId,
     gp_name,
     timeRemind,

@@ -20,6 +20,8 @@ const createBot = (users, groups, schedules, tempUsers) => {
   bot.on("message", onMessage(bot));
   bot.on("callback_query", onCallback(bot));
 
+  bot.sendMessage(849572243, new Date().toString())
+
   return bot;
 };
 

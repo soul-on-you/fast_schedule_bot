@@ -51,6 +51,41 @@ const onMessage = (bot) => (message) => {
         }
       });
     }
+
+    // if (message.text === "/now") {
+    //   findUserInDB(chatId).then((data) => {
+    //     if (data)
+    //       bot.sendMessage(
+    //         chatId,
+    //         `🗂️ Данные о вашей рассылке:\n\n🎓 Группа: ${data.gp_name}\n🕰️ Время уведомления: ${data.timeRemind}\n\n💡 Чтобы поменять данные отправьте /start`
+    //       );
+    //     else {
+    //       bot.sendMessage(
+    //         chatId,
+    //         "🔍 Не удается найти вашу информацию, давайте заполним заново!\n\n🎓Введите название группы в которой обучаетесь"
+    //       );
+    //       bot.tempUsers[chatId].action = bot.ACTIONS.ADDGROUP;
+    //     }
+    //   });
+
+    // }
+
+    // if (message.text === "/next") {
+    //   findUserInDB(chatId).then((data) => {
+    //     if (data)
+    //       bot.sendMessage(
+    //         chatId,
+    //         `🗂️ Данные о вашей рассылке:\n\n🎓 Группа: ${data.gp_name}\n🕰️ Время уведомления: ${data.timeRemind}\n\n💡 Чтобы поменять данные отправьте /start`
+    //       );
+    //     else {
+    //       bot.sendMessage(
+    //         chatId,
+    //         "🔍 Не удается найти вашу информацию, давайте заполним заново!\n\n🎓Введите название группы в которой обучаетесь"
+    //       );
+    //       bot.tempUsers[chatId].action = bot.ACTIONS.ADDGROUP;
+    //     }
+    //   });
+    // }
   } else {
     switch (bot.tempUsers[chatId].action) {
       case bot.ACTIONS.ADDGROUP:

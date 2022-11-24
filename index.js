@@ -1,6 +1,6 @@
 require("dotenv").config();
 const createBot = require("./src/bot");
-const { loadDB, initGroupDB } = require("./src/db");
+const { loadDB } = require("./src/db");
 const { parseSchedule } = require("./src/parser");
 
 const start = async () => {
@@ -20,6 +20,8 @@ const start = async () => {
 
   const tempUsers = {};
   createBot(users, groups, schedules, tempUsers);
+  
 };
 
+// setTimeout(start, 10000);
 start();

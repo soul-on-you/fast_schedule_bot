@@ -37,7 +37,11 @@ const buildMessage = (bot, chatId) => {
             data.auditor
               ? `в ауд: 🐗 ${data.auditor}`
               : ": 😎 аудитория не указана"
-          }${data.teacher ? `\n👨‍🏫 Препод: ${data.teacher}` : ""}`
+          }${
+            data.teacher
+              ? `\n👨‍🏫 Препод: ${data.teacher.replace(/\s+/g, " ")}`
+              : ""
+          }`
       )
       .join("\n\n");
     return `📆 Расписание на день\n${message}`;
@@ -51,7 +55,7 @@ const buildTimeCron = (timeRemind) => {
   timeRemind = timeRemind.split(":");
 
   if (timeRemind[1].length === 2 && timeRemind[1].at(0) == "0") {
-    timeRemind[1] = "0";
+    timeRemind[1] = timeRemind[1].slice(1)[0];
   }
 
   if (timeRemind[0].length === 2 && timeRemind[0].at(0) == "0") {

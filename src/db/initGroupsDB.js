@@ -1,4 +1,4 @@
-const {parseGroups} = require("../parser");
+const { parseGroups } = require("../parser");
 const axios = require("axios");
 
 const initGroupDB = async () => {
@@ -7,17 +7,17 @@ const initGroupDB = async () => {
   const result = await parseGroups();
 
   console.log("Cleaning groups database...");
-  const dbGroup = await axios.get("http://localhost:3000/groups");
+  const dbGroup = await axios.get(`${process.env.DB_PATH}/groups`);
   await Promise.all(
     dbGroup.data.map((g) =>
-      axios.delete(`http://localhost:3000/groups/${g.id}`)
+      axios.delete(`${process.env.DB_PATH}/groups/${g.id}`)
     )
   );
   console.log("Cleaning finished!");
 
   console.log("Filling groups database...");
   await Promise.all(
-    result.map((group) => axios.post("http://localhost:3000/groups", group))
+    result.map((group) => axios.post(`${process.env.DB_PATH}/groups`, group))
   );
   console.log("Group database filled!");
 };
