@@ -20,6 +20,15 @@ const buildMessage = (bot, chatId) => {
   const period = PeriodChecker();
   const day = DayChecker();
 
+  const whatDay = {
+    Понедельник: "Понедельник",
+    Вторник: "Вторник",
+    Среда: "Среду",
+    Четверг: "Четверг",
+    Пятница: "Пятницу",
+    Суббота: "Субботу",
+  };
+
   const messageData = bot.schedules[bot.users[chatId].gp_name][day];
   if (messageData) {
     // console.log(messageData);
@@ -44,7 +53,7 @@ const buildMessage = (bot, chatId) => {
           }`
       )
       .join("\n\n");
-    return `📆 Расписание на день\n${message}`;
+    return `📆 Расписание на ${whatDay[day]}\n${message}`;
   }
   return null;
 };

@@ -2,6 +2,7 @@ const { addToUserDB } = require("../db");
 
 const botAddTime = (bot, chatId) => {
   addToUserDB(
+    bot,
     chatId,
     bot.tempUsers[chatId].data.group,
     bot.tempUsers[chatId].data.time

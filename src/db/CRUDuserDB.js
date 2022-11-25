@@ -14,10 +14,11 @@ const removeFromUserDB = async (chatId) => {
   return res.data;
 };
 
-const addToUserDB = async (chatId, gp_name, timeRemind) => {
+const addToUserDB = async (bot, chatId, gp_name, timeRemind) => {
   const user = await findUserInDB(chatId);
   if (user) {
     await removeFromUserDB(user.id);
+    bot.removeTask(chatId);
   }
 
   console.log("Adding users to database...");
